@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html>
+
+<!–- Input Form Table Styling -–>
+<style>
+table {
+    font-family:times-new-roman;
+	border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid #626567;
+    text-align: left;
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #cacfd2; 
+}
+
+tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #909497;
+    color: white;
+}
+</style>
+
+<!–- Styling for helper text inside input box, button styling and styling for the input form -–>
+<style>
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=button] {
+    width: 25%;
+    background-color: #A04000;
+    font-family: times-new-roman;
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position:relative;
+}
+div {
+    border-radius: 5px;
+    background-color: #cacfd2;
+    padding: 24px 50px;
+    text-align:Left;
+}
+</style>
+
+<h1 style="color:#A04000; font-family: times-new-roman;"><center>Cooking Fuel Analyzer</center></h1>
+
+<!–- Building out the form elements Name, Address and Usage Table -–>
+
+<body>
+<div>
+  <form action="/action_page.php">
+    <font color = "#A04000">
+    <label for="name"><strong>Name:</strong></label>
+    <input type="text" id="name" name="Name" placeholder="Customer name....">
+    <label for="address"><strong>Address:</strong></label>
+    <input type="text" id="address" name="address" placeholder="Customer address....">
+    <label for="usage"><strong>Usage Data:</strong></label>
+    </font>
+    <table id="materials">
+    <tr> <th>Material</th> <th>Usage per week</th> </tr>
+    <tr>
+    <td>Coal Cake</td>
+    	<td><input type="number" id="coalcake" min="0" max="21" value ="0" ></td>
+  	</tr>
+  	<tr>
+    <td>Straw</td>
+        <td><input type="number" id="straw" min="0" max="21" value ="0" ></td>
+    </tr>
+  	<tr>
+    <td>Dry Leaf</td>
+        <td><input type="number" id="dryleaf" min="0" max="21" value ="0" ></td>
+    </tr>
+  	<tr>
+    <td>Wood</td>
+        <td><input type="number" id="wood" min="0" max="21" value ="0" ></td>
+    </tr>
+  	<tr>
+    <td>Cow Dung</td>
+        <td><input type="number" id="cowdung" min="0" max="21" value ="0" ></td>
+    </tr>
+  	<tr>
+    <td>Gas Stove</td>
+        <td><input type="number" id="gasstove" min="0" max="21" value ="0" ></td>
+    </tr>
+  	<tr>
+    <td>Twigs</td>
+        <td><input type="number" id="twigs" min="0" max="21" value ="0" ></td>
+    </tr>
+ </table>
+ <br>
+ <input type="button" value="SUBMIT" onclick="showName()">
+</form>
+</div>
+
+<!–-Function called when the button is clicked-–>
+
+<script type="text/JavaScript">
+function showName(){
+  // Get all form elements into variable
+  var name = document.getElementById("name").value;
+  var address = document.getElementById("address").value;
+  var coalcake = document.getElementById("coalcake").value;
+  var straw = document.getElementById("straw").value;  
+  var dryleaf = document.getElementById("dryleaf").value;
+  var wood = document.getElementById("wood").value;
+  var cowdung = document.getElementById("cowdung").value;
+  var gasstove = document.getElementById("gasstove").value;
+  var twigs = document.getElementById("twigs").value;
+  var best; var tips; var maxvalue;
+  
+  // Per unit Safe values for Carbon Monoxide(CO), Carbon Dioxide(CO2), Ozone(O3) 
+  var co = 10; var co2 = 10000; var o3 = 0.2;
+  
+  // Calculating safe thresholds and actual emission of CO, CO2, O3 for each fuel, based on usage data
+  var coalcakecosafe = co * coalcake;
+  var coalcakecolevel = 64 * coalcake;
+  var coalcakeco2safe = co2 * coalcake;
+  var coalcakeco2level = 234320 * coalcake;
+  var coalcakeo3safe = o3 * coalcake;
+  var coalcakeo3level = 0.128 * coalcake;
+  
+  var strawcosafe = co * straw;
+  var strawcolevel = 173 * straw;
+  var strawco2safe = co2 * straw;
+  var strawco2level = 147337 * straw;
+  var strawo3safe = o3 * straw;
+  var strawo3level = 0.104 * straw;  
+  
+  var dryleafcosafe = co * dryleaf;
+  var dryleafcolevel = 76 * dryleaf;
+  var dryleafco2safe = co2 * dryleaf;
+  var dryleafco2level = 266272 * dryleaf;
+  var dryleafo3safe = o3 * dryleaf;
+  var dryleafo3level = 0.093 * dryleaf;
+  
+  var woodcosafe = co * wood;
+  var woodcolevel = 150 * wood;
+  var woodco2safe = co2 * wood;
+  var woodco2level = 200000 * wood;
+  var woodo3safe = o3 * wood;
+  var woodo3level = 0.42 * wood; 
+  
+  var cowdungcosafe = co * cowdung;
+  var cowdungcolevel = 186 * cowdung;
+  var cowdungco2safe = co2 * cowdung;
+  var cowdungco2level = 290533 * cowdung;
+  var cowdungo3safe = o3 * cowdung;
+  var cowdungo3level = 0.208 * cowdung; 
+  
+  var gasstovecosafe = co * gasstove;
+  var gasstovecolevel = 1 * gasstove;
+  var gasstoveco2safe = co2 * gasstove;
+  var gasstoveco2level = 84024 * gasstove;
+  var gasstoveo3safe = o3 * gasstove;
+  var gasstoveo3level = 0.049 * gasstove; 
+  
+  var twigscosafe = co * twigs;
+  var twigscolevel = 55 * twigs;
+  var twigsco2safe = co2 * twigs;
+  var twigsco2level = 285799 * twigs;
+  var twigso3safe = o3 * twigs;
+  var twigso3level = 0.093 * twigs; 
+  
+  // Evaluating the best fuel among the used
+  if (gasstove > 0) {
+    best = "Gasstove <br> <br> This is a great option from a health stand-point and for the environment. Keep using this and stay healthy!";
+  } else if (straw > 0) {
+    best = "Straw <br> <br> Straw is very good and works well for short cooking durations. If possible try to move towards this.";
+  } else if (wood > 0) {
+    best = "Wood <br> <br> Wood is great long-term and lasts well as a fuel. If possible try to move towards this.";
+  }  else if (twigs > 0) {
+    best = "Twigs <br> <br> Twigs are a good fuel source and cause very few health problems. If possible try to move towards this.";
+  }  else if (cowdung > 0) {
+    best = "Cow Dung <br> <br> Cow dung is a mediocre fuel and only rarely creates long term health problems. If possible try to move towards this.";
+  }  else if (dryleaf > 0) {
+    best = "Dry Leaf <br> <br> Dry leaf has its benefits and can be used for short cooking durations. If possible try to move towards this.";
+  }  else if (coalcake > 0) {
+    best = "Coal Cake <br> <br> Coal cake is not the best option but can still be used. If possible try to move towards other fuels (e.g. straw, wood, gas stove).";
+  }  else {
+    best = "No value selected"
+  }
+
+  // Finding the fuel that is most used in a household
+  maxvalue = Math.max (coalcake, straw, dryleaf, wood, cowdung, gasstove, twigs);
+
+  // Providing recommendations based on the fuel that is most used
+  if (gasstove == maxvalue) {
+    tips = "Using a gas stove is the healthiest option. It releases extremely low amounts of carbon monoxide and ozone. There is also very little carbon dioxide released when burnt making this is a very safe option. Although gas stoves can be more expensive it drastically decreases the harmful particles in the air and allows others to be around safely when cooking.";
+  }  else if (straw == maxvalue) {
+    tips = "Straw is a great fuel to power your kitchens. It releases low amounts of carbon dioxide and ozone. Although it will take more straw to keep the fire going, the person cooking and anybody around will be protected. The carbon dioxide released is in small quantities so it does not hurt the human body. Overall, using straws is one of the best options for a healthy fuel.";
+  }  else if (wood == maxvalue)  {
+    tips = "Wood is a good fuel source to use with low amounts of carbon monoxide being released. Its produces lower amounts of ozone and an efficient long lasting fuel. Prolonged use of wood as a fuel may cause mild chest pain and a little bit of nausea. Children should stay away when cooking using wood to avoid respiratory infections from the ozone. Wood also produces little carbon dioxide allowing it to be more nature friendly.";
+  }  else if (twigs == maxvalue) {
+    tips = "Twigs produce some carbon monoxide but is definitely a viable option. Some basic symptoms like a dull headache, weakness, and a little bit of temporary blurred vision may occur. There is very little chance of anything more severe taking place. The ozone levels in twigs can get quite high so young children are advised to stay away during the cooking to prevent any long term lung problems (e.g. asthma). An important benefit of twigs is the incredibly low carbon dioxide rates which makes it very nature friendly.";
+  }  else if (cowdung == maxvalue) {
+    tips = "Cow dung produces some carbon monoxide but is a decent fuel to use. Some side effects may include dizziness or a dull headache (anything more severe is unlikely). Anyone with a pre-existing heart condition should try to stay away because the chemicals released may cause pain. Cow dung also produces extremely low amounts of ozone which will help others with respiratory infections.";
+  }  else if (dryleaf == maxvalue) {
+    tips = "Dry leaf releases a larger amount of carbon monoxide which can lead to headaches, nausea, and shortness of breath. People with any type of chronic heart diseases should try to stay away when using dry leaf to cook. It is also harmful towards the environment because of the large amounts of carbon dioxide released. A benefit of using dry leaf is the reduced ozone output which can help prevent damage to the lungs.";
+  }  else if (coalcake == maxvalue) {
+    tips = "Coal cakes produce higher amounts of carbon monoxide which can be damaging to people with heart disease. Anyone with forms of chronic heart diseases should try to stay away when cooking with coal cakes to stay safe. One benefit of using coal cakes is decreased carbon dioxide levels which can help prevent dizziness and nausea after cooking.";
+  }  else {
+    tips = "No value selected"
+  }
+  
+  display_name.innerHTML= name;  
+  display_best.innerHTML= best;
+  display_tips.innerHTML= tips;
+  display_coalcake.innerHTML= coalcake;
+  display_straw.innerHTML= straw;
+  display_dryleaf.innerHTML= dryleaf;
+  display_wood.innerHTML= wood;
+  display_cowdung.innerHTML= cowdung
+  display_gasstove.innerHTML= gasstove;
+  display_twigs.innerHTML= twigs;
+  
+  display_coalcakecosafe.innerHTML = coalcakecosafe;
+  display_coalcakecolevel.innerHTML = coalcakecolevel;
+  display_coalcakeco2safe.innerHTML = coalcakeco2safe;
+  display_coalcakeco2level.innerHTML = coalcakeco2level;
+  display_coalcakeo3safe.innerHTML = coalcakeo3safe.toFixed(2);
+  display_coalcakeo3level.innerHTML = coalcakeo3level.toFixed(2);  
+  
+  display_strawcosafe.innerHTML = strawcosafe;
+  display_strawcolevel.innerHTML = strawcolevel;
+  display_strawco2safe.innerHTML = strawco2safe;
+  display_strawco2level.innerHTML = strawco2level;
+  display_strawo3safe.innerHTML = strawo3safe.toFixed(2);
+  display_strawo3level.innerHTML = strawo3level.toFixed(2); 
+  
+  display_dryleafcosafe.innerHTML = dryleafcosafe;
+  display_dryleafcolevel.innerHTML = dryleafcolevel;
+  display_dryleafco2safe.innerHTML = dryleafco2safe;
+  display_dryleafco2level.innerHTML = dryleafco2level;
+  display_dryleafo3safe.innerHTML = dryleafo3safe.toFixed(2);
+  display_dryleafo3level.innerHTML = dryleafo3level.toFixed(2); 
+  
+  display_woodcosafe.innerHTML = woodcosafe;
+  display_woodcolevel.innerHTML = woodcolevel;
+  display_woodco2safe.innerHTML = woodco2safe;
+  display_woodco2level.innerHTML = woodco2level;
+  display_woodo3safe.innerHTML = woodo3safe.toFixed(2);
+  display_woodo3level.innerHTML = woodo3level.toFixed(2); 
+
+  display_cowdungcosafe.innerHTML = cowdungcosafe;
+  display_cowdungcolevel.innerHTML = cowdungcolevel;
+  display_cowdungco2safe.innerHTML = cowdungco2safe;
+  display_cowdungco2level.innerHTML = cowdungco2level;
+  display_cowdungo3safe.innerHTML = cowdungo3safe.toFixed(2);
+  display_cowdungo3level.innerHTML = cowdungo3level.toFixed(2); 
+  
+  display_gasstovecosafe.innerHTML = gasstovecosafe;
+  display_gasstovecolevel.innerHTML = gasstovecolevel;
+  display_gasstoveco2safe.innerHTML = gasstoveco2safe;
+  display_gasstoveco2level.innerHTML = gasstoveco2level;
+  display_gasstoveo3safe.innerHTML = gasstoveo3safe.toFixed(2);
+  display_gasstoveo3level.innerHTML = gasstoveo3level.toFixed(2); 
+  
+  display_twigscosafe.innerHTML = twigscosafe;
+  display_twigscolevel.innerHTML = twigscolevel;
+  display_twigsco2safe.innerHTML = twigsco2safe;
+  display_twigsco2level.innerHTML = twigsco2level;
+  display_twigso3safe.innerHTML = twigso3safe.toFixed(2);
+  display_twigso3level.innerHTML = twigso3level.toFixed(2); 
+}
+</script>
+
+<BR><BR>
+<img src="smoke5.png" style="width:100%">
+<BR><BR>
+
+<!-- Display all the calculated values -->
+<h3 style="color:#A04000; font-family: times-new-roman;">Hello  <span id = "display_name"></span> </h3>
+<h3 style="color:#A04000; font-family: times-new-roman;">Best Among the Used: <span id = "display_best"></span> </h3>
+<h3 style="color:#A04000; font-family: times-new-roman;">Recommendations for the most used fuel: <span id = "display_tips"></span> </h3>
+
+<table id="myTable">
+  <tr id="Fuel">
+    <th><center>Fuel Source</center></th>
+    <th><center>Usage per week</center></th>
+    <th><center>CO Safe Level (mg/m3)</center></th>
+    <th><center>CO Actual Level (mg/m3)</center></th>
+    <th><center>CO2 Safe Level (mg/m3)</center></th>
+    <th><center>CO2 Actual Level (mg/m3)</center></th>
+    <th><center>O3 Safe Level (mg/m3)</center></th>
+    <th><center>O3 Actual Level (mg/m3)</center></th>    
+  </tr>
+  <tr id="Coal">
+    <td>Coal Cake</td>
+    <td><span id = display_coalcake></span></td>
+    <td><span id = display_coalcakecosafe></span></td>
+    <td><span id = display_coalcakecolevel></span></td>
+    <td><span id = display_coalcakeco2safe></span></td>
+    <td><span id = display_coalcakeco2level></span></td> 
+    <td><span id = display_coalcakeo3safe></span></td>
+    <td><span id = display_coalcakeo3level></span></td>   
+  </tr>
+  <tr id="straw">
+    <td>Straw</td>
+    <td><span id = display_straw></span></td>
+    <td><span id = display_strawcosafe></span></td>
+    <td><span id = display_strawcolevel></span></td>
+    <td><span id = display_strawco2safe></span></td>
+    <td><span id = display_strawco2level></span></td> 
+    <td><span id = display_strawo3safe></span></td>
+    <td><span id = display_strawo3level></span></td>
+  </tr>
+  <tr id="dry">
+    <td>Dry Leaf</td>
+    <td><span id = display_dryleaf></span></td>
+    <td><span id = display_dryleafcosafe></span></td>
+    <td><span id = display_dryleafcolevel></span></td>
+    <td><span id = display_dryleafco2safe></span></td>
+    <td><span id = display_dryleafco2level></span></td> 
+    <td><span id = display_dryleafo3safe></span></td>
+    <td><span id = display_dryleafo3level></span></td>
+  </tr>
+  <tr id="wood">
+    <td>Wood</td>
+    <td><span id = display_wood></span></td>
+    <td><span id = display_woodcosafe></span></td>
+    <td><span id = display_woodcolevel></span></td>
+    <td><span id = display_woodco2safe></span></td>
+    <td><span id = display_woodco2level></span></td> 
+    <td><span id = display_woodo3safe></span></td>
+    <td><span id = display_woodo3level></span></td>
+  </tr>
+  <tr id="cow">
+    <td>Cow Dung</td>
+    <td><span id = display_cowdung></span></td>
+    <td><span id = display_cowdungcosafe></span></td>
+    <td><span id = display_cowdungcolevel></span></td>
+    <td><span id = display_cowdungco2safe></span></td>
+    <td><span id = display_cowdungco2level></span></td> 
+    <td><span id = display_cowdungo3safe></span></td>
+    <td><span id = display_cowdungo3level></span></td>
+  </tr>
+  <tr id="gas">
+    <td>Gas Stove</td>
+    <td><span id = display_gasstove></span></td>
+    <td><span id = display_gasstovecosafe></span></td>
+    <td><span id = display_gasstovecolevel></span></td>
+    <td><span id = display_gasstoveco2safe></span></td>
+    <td><span id = display_gasstoveco2level></span></td> 
+    <td><span id = display_gasstoveo3safe></span></td>
+    <td><span id = display_gasstoveo3level></span></td>
+  </tr>
+  <tr id= "twigs">
+    <td>Twigs</td>
+    <td><span id = display_twigs></span></td>
+    <td><span id = display_twigscosafe></span></td>
+    <td><span id = display_twigscolevel></span></td>
+    <td><span id = display_twigsco2safe></span></td>
+    <td><span id = display_twigsco2level></span></td> 
+    <td><span id = display_twigso3safe></span></td>
+    <td><span id = display_twigso3level></span></td>
+  </tr> 
+</table>
+
+<h2>Graph</h2>
+<img src="Science_graph.jpg" height = "431" width="670" >
+
+</body>
+</html>
