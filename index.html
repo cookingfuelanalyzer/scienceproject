@@ -219,7 +219,7 @@ function showName(){
   maxvalue = Math.max (coalcake, straw, dryleaf, wood, cowdung, gasstove, twigs);
 
   // Providing recommendations based on the fuel that is most used
-  if (maxvalue == 0) {
+  if (maxvalue == '') {
     tips = "No value selected"
   }  else if (gasstove == maxvalue) {
     tips = "Using a gas stove is the healthiest option. It releases extremely low amounts of carbon monoxide and ozone. There is also very little carbon dioxide released when burnt making this is a very safe option. Although gas stoves can be more expensive it drastically decreases the harmful particles in the air and allows others to be around safely when cooking.";
