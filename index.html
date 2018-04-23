@@ -81,7 +81,8 @@ div {
     <tr> <th>Material</th> <th>Usage per week</th> </tr>
     <tr>
     <td>Coal Cake</td>
-    	<td><input type="number" id="coalcake" min="0" max="21" value ="0" ></td>
+    	<td><input type="number" id="coalcake" min="0" max="21" value ="0" step="1" ondrop="return false;" 
+	           onpaste="return false;" onkeypress='return event.charCode>=48 && event.charCode<=57'></td>
   	</tr>
   	<tr>
     <td>Straw</td>
