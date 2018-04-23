@@ -233,7 +233,7 @@ function showName(){
     tips = "Dry leaf releases a larger amount of carbon monoxide which can lead to headaches, nausea, and shortness of breath. People with any type of chronic heart diseases should try to stay away when using dry leaf to cook. It is also harmful towards the environment because of the large amounts of carbon dioxide released. A benefit of using dry leaf is the reduced ozone output which can help prevent damage to the lungs.";
   }  else if (coalcake == maxvalue) {
     tips = "Coal cakes produce higher amounts of carbon monoxide which can be damaging to people with heart disease. Anyone with forms of chronic heart diseases should try to stay away when cooking with coal cakes to stay safe. One benefit of using coal cakes is decreased carbon dioxide levels which can help prevent dizziness and nausea after cooking.";
-  }  else {
+  }  else if (maxvalue == 0) {
     tips = "No value selected"
   }
   
