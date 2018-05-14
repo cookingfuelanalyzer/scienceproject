@@ -1,31 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <!–- Input Form Table Styling -–>
 <style>
 table {
     font-family:times-new-roman;
-	border-collapse: collapse;
+    border-collapse: collapse;
     width: 100%;
 }
-
 td, th {
     border: 2px solid #626567;
     text-align: left;
     padding: 10px;
     styel
 }
-
 tr:nth-child(even) {
     background-color: #cacfd2;
     font-weight: bold;
-    font-size: 20px;	
+    font-size: 15px;	
 }
-
 tr:nth-child(odd) {
     background-color: #FFFFFF;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
 }
 th {
     padding-top: 12px;
@@ -33,7 +30,7 @@ th {
     text-align: left;
     background-color: #909497;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
 }
 </style>
 
@@ -47,6 +44,8 @@ input[type=text], select {
     border: 1px;
     border-radius: 4px;
     box-sizing: border-box;
+    font-weight: bold;
+    font-size: 14px;
 }
 input[type=button] {
     width: 25%;
@@ -62,7 +61,7 @@ input[type=button] {
     position:relative;
 }
 div {
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: #cacfd2;
     padding: 24px 50px;
     text-align:Left;
@@ -207,24 +206,22 @@ function showName(){
   if (gasstove > 0) {
     best = "Gasstove <br> <br> This is the best option from a health stand-point and for the environment. Keep using this and stay healthy!";
   } else if (straw > 0) {
-    best = "Straw <br> <br> Burning one kilogram of straw will release pollutants (in mg/m3): CO (172.91), CO2 (147,337) and O3 (0.21)"
+    best = "Straw <br> <br> Burning one kilogram of straw will release pollutants (in mg/m<sup>3</sup>): CO (172.91), CO<sub>2</sub> (147,337) and O<sub>3</sub> (0.21)"
   } else if (wood > 0) {
-    best = "Wood <br> <br> Burning one kilogram of wood will release pollutants (in mg/m3): CO (150), CO2 (200,000) and O3 (0.42)";
+    best = "Wood <br> <br> Burning one kilogram of wood will release pollutants (in mg/m<sup>3</sup>): CO (150), CO<sub>2</sub> (200,000) and O<sub>3</sub> (0.42)";
   }  else if (twigs > 0) {
-    best = "Twigs <br> <br> Burning one kilogram of twigs will release pollutants (in mg/m3): CO (54.68), CO2 (285,298) and O3 (0.22)";
+    best = "Twigs <br> <br> Burning one kilogram of twigs will release pollutants (in mg/m<sup>3</sup>): CO (54.68), CO<sub>2</sub> (285,298) and O<sub>3</sub> (0.22)";
   }  else if (cowdung > 0) {
-    best = "Cow Dung <br> <br> Burning one kilogram of cow dung will release pollutants (in mg/m3): CO (186.12), CO2 (290,532) and O3 (0.21)";
+    best = "Cow Dung <br> <br> Burning one kilogram of cow dung will release pollutants (in mg/m<sup>3</sup>): CO (186.12), CO<sub>2</sub> (290,532) and O<sub>3</sub> (0.21)";
   }  else if (dryleaf > 0) {
-    best = "Dry Leaf <br> <br> Burning one kilogram of dry leaf will release pollutants (in mg/m3): CO (76.11), CO2 (266,272) and O3 (0.09)";
+    best = "Dry Leaf <br> <br> Burning one kilogram of dry leaf will release pollutants (in mg/m<sup>3</sup>): CO (76.11), CO<sub>2</sub> (266,272) and O<sub>3</sub> (0.09)";
   }  else if (coalcake > 0) {
-    best = "Coal Cake <br> <br> Burning one kilogram of coal cake will release pollutants (in mg/m3): CO (63.55), CO2 (234,319) and O3 (0.09)";
+    best = "Coal Cake <br> <br> Burning one kilogram of coal cake will release pollutants (in mg/m<sup>3</sup>): CO (63.55), CO<sub>2</sub> (234,319) and O<sub>3</sub> (0.09)";
   }  else {
     best = "No value selected"
   }
-
   // Finding the fuel that is most used in a household
   maxvalue = Math.max (coalcake, straw, dryleaf, wood, cowdung, gasstove, twigs);
-
   // Providing recommendations based on the fuel that is most used
   if (maxvalue == '') {
     tips = "No value selected"
@@ -235,7 +232,7 @@ function showName(){
   }  else if (wood == maxvalue)  {
     tips = "Wood is a good fuel source to use with low amounts of carbon monoxide being released. Its produces lower amounts of ozone and an efficient long lasting fuel. Prolonged use of wood as a fuel may cause mild chest pain and a little bit of nausea. Children should stay away when cooking using wood to avoid respiratory infections from the ozone. Wood also produces little carbon dioxide allowing it to be more nature friendly.";
   }  else if (twigs == maxvalue) {
-    tips = "Twigs emit low levels of carbon monoxide making it a viable option. Some symptoms can include a dull headache, weakness, and temporary blurred vision. The ozone levels in twigs can reach upper levels (0.22 mg/m3) so young children are advised to stay away during the cooking to prevent long-term lung problems (e.g. asthma). An important benefit of twigs is the incredibly low carbon dioxide rates which allows it to be more nature-friendly.";
+    tips = "Twigs emit low levels of carbon monoxide making it a viable option. Some symptoms can include a dull headache, weakness, and temporary blurred vision. The ozone levels in twigs can reach upper levels (0.22 mg/m<sup>3</sup>) so young children are advised to stay away during the cooking to prevent long-term lung problems (e.g. asthma). An important benefit of twigs is the incredibly low carbon dioxide rates which allows it to be more nature-friendly.";
   }  else if (cowdung == maxvalue) {
     tips = "Cow dung produces some carbon monoxide but is a decent fuel to use. Some side effects may include dizziness or a dull headache (anything more severe is unlikely). Anyone with a pre-existing heart condition should try to stay away because the chemicals released may cause pain. Cow dung also produces extremely low amounts of ozone which will help others with respiratory infections.";
   }  else if (dryleaf == maxvalue) {
@@ -282,7 +279,6 @@ function showName(){
   display_woodco2level.innerHTML = woodco2level;
   display_woodo3safe.innerHTML = woodo3safe.toFixed(2);
   display_woodo3level.innerHTML = woodo3level.toFixed(2); 
-
   display_cowdungcosafe.innerHTML = cowdungcosafe;
   display_cowdungcolevel.innerHTML = cowdungcolevel;
   display_cowdungco2safe.innerHTML = cowdungco2safe;
@@ -311,20 +307,20 @@ function showName(){
 <BR><BR>
 
 <!-- Display all the calculated values -->
-<h3 style="color:#A04000; font-family: times-new-roman;">Hello  <span id = "display_name"></span> </h3>
-<h3 style="color:#A04000; font-family: times-new-roman;">Best biomass fuel among the ones selected: <span id = "display_best"></span> </h3>
-<h3 style="color:#A04000; font-family: times-new-roman;">Recommendations for the most used fuel: <span id = "display_tips"></span> </h3>
+<h3 style="color:#0000ff; font-family: times-new-roman;">Hello  <span id = "display_name"></span> </h3>
+<h3 style="color:#0000ff; font-family: times-new-roman;">Best biomass fuel among the ones selected: <span id = "display_best"></span> </h3>
+<h3 style="color:#0000ff; font-family: times-new-roman;">Recommendations for the most used fuel: <span id = "display_tips"></span> </h3>
 
 <table id="myTable">
   <tr id="Fuel">
     <th><center>Fuel Source</center></th>
     <th><center>Usage per week</center></th>
-    <th><center>CO Safe Level (mg/m3)</center></th>
-    <th><center>CO Actual Level (mg/m3)</center></th>
-    <th><center>CO2 Safe Level (mg/m3)</center></th>
-    <th><center>CO2 Actual Level (mg/m3)</center></th>
-    <th><center>O3 Safe Level (mg/m3)</center></th>
-    <th><center>O3 Actual Level (mg/m3)</center></th>    
+    <th><center>CO Safe Level (mg/m<sup>3</sup>)</center></th>
+    <th><center>CO Actual Level (mg/m<sup>3</sup>)</center></th>
+    <th><center>CO<sub>2</sub> Safe Level (mg/m<sup>3</sup>)</center></th>
+    <th><center>CO<sub>2</sub> Actual Level (mg/m<sup>3</sup>)</center></th>
+    <th><center>O<sub>3</sub> Safe Level (mg/m<sup>3</sup>)</center></th>
+    <th><center>O<sub>3</sub> Actual Level (mg/m<sup>3</sup>)</center></th>    
   </tr>
   <tr id="Coal">
     <td>Coal Cake</td>
